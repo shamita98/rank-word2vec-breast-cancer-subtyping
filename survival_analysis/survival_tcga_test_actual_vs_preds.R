@@ -1,8 +1,16 @@
+#--------------------------------------------------------------------
+# Title: Survival Analysis of TCGA-BRCA Test Set
+# Comparison between Actual Subtype Labels and Model-Predicted Subtype labels
+#--------------------------------------------------------------------
+
 library(survminer)
 library(survival)
 library(tidyverse)
 
+#--------------------------------------------------------------------
 # load files
+#--------------------------------------------------------------------
+
 counts_res = read.csv("C:/Users/User/Documents/master_thesis_project_analysis/pam50_classification_counts/counts_model_evaluation/counts_prediction_results/tcga_brca_counts_rf_predictions.csv",
                   header = 1, row.names = 1)
 rank_res = read.csv("C:/Users/User/Documents/master_thesis_project_analysis/pam50_classification_ranks/ranks_model_evaluation/ranks_prediction_results/tcga_brca_ranks_svm_predictions.csv",
@@ -23,8 +31,13 @@ counts_res_filtered = counts_res[counts_res$overall_survival_years<=10, ]
 rank_res_filtered = rank_res[rank_res$overall_survival_years<=10, ]
 word2vec_res_filtered = word2vec_res[word2vec_res$overall_survival_years<=10, ]
 
-
+#--------------------------------------------------------------------
 # function to create a survival plot
+#--------------------------------------------------------------------
+#--------------------------------------------------------------------
+# function to create a survival plot using actual subtype labels
+#--------------------------------------------------------------------
+#--------------------------------------------------------------------
 actual_survivalPlot = function(df, survival_event, 
                         alive_indicator, plot_title)
 {
@@ -82,6 +95,12 @@ actual_survivalPlot = function(df, survival_event,
                     
 }
 
+#--------------------------------------------------------------------
+#--------------------------------------------------------------------
+# function to create a survival plot using model-predicted subtype labels
+#--------------------------------------------------------------------
+#--------------------------------------------------------------------
+
 predicted_survivalPlot = function(df, survival_event, 
                                alive_indicator, plot_title)
 {
@@ -138,8 +157,10 @@ predicted_survivalPlot = function(df, survival_event,
   
 }
 
-
+#--------------------------------------------------------------------
 # survival plot using actual subtype labels
+#--------------------------------------------------------------------
+
 actual_label_plot = actual_survivalPlot(df = counts_res_filtered, 
                                  survival_event = "vital_status", 
                                  alive_indicator = "Alive", 
@@ -150,8 +171,9 @@ ggsave(actual_label_plot$plot, filename = "tcga_brca_actual_labels_survival.png"
        dpi = 300, height = 7, width = 8)
 
 
-
-# survival plot using counts-logreg labels
+#--------------------------------------------------------------------
+# survival plot using counts-rf labels
+#--------------------------------------------------------------------
 counts_rf_plot = predicted_survivalPlot(df = counts_res_filtered, 
                                         survival_event = "vital_status", 
                                         alive_indicator = "Alive", 
@@ -161,8 +183,10 @@ print(counts_rf_plot)
 ggsave(counts_rf_plot$plot, filename = "tcga_brca_counts_rf_labels_survival.png", 
        dpi = 300, height = 7, width = 8)
 
-
+#--------------------------------------------------------------------
 # survival plot using rank-svm labels
+#--------------------------------------------------------------------
+
 rank_svm_plot = predicted_survivalPlot(df = rank_res_filtered, 
                                             survival_event = "vital_status", 
                                             alive_indicator = "Alive", 
@@ -173,7 +197,10 @@ ggsave(rank_svm_plot$plot, filename = "tcga_brca_rank_svm_labels_survival.png",
        dpi = 300, height = 7, width = 8)
 
 
+#--------------------------------------------------------------------
 # survival plot using word2vecpca-svm labels
+#--------------------------------------------------------------------
+
 word2vec_svm_plot = predicted_survivalPlot(df = word2vec_res_filtered, 
                                        survival_event = "vital_status", 
                                        alive_indicator = "Alive", 
