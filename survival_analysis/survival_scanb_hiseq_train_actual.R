@@ -1,5 +1,5 @@
 #--------------------------------------------------------------------
-# Title: Survival Analysis of SCAN-B HiSeq Training Set using Actual PAM50 Labels
+# Title: Survival Analysis of SCAN-B HiSeq Training Set using Actual Subtype Labels
 #--------------------------------------------------------------------
 
 library(survminer)
@@ -16,7 +16,7 @@ scanb_train = read.csv("C:/Users/User/Documents/master_thesis_project_analysis/d
 # function to create a survival plot
 #--------------------------------------------------------------------
 #--------------------------------------------------------------------
-# function to create a survival plot using actual PAM50 labels
+# function to create a survival plot using actual subtype labels
 #--------------------------------------------------------------------
 #--------------------------------------------------------------------
 
