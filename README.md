@@ -44,7 +44,7 @@ The best machine learning models from each classification category underwent fur
 - Python dependencies are listed in [`environment.yml`](environment.yml). To create the conda environment, run:
 ```bash
 conda env create -f environment.yml
-conda activate proj_env
+conda activate brca-subtyping
 ```
 - Jupyter Notebook
 - RStudio
