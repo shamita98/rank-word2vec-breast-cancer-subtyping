@@ -1,8 +1,16 @@
+#--------------------------------------------------------------------
+# Title: Survival Analysis of SCAN-B NextSeq Test Set
+# Comparison between Actual Subtype Labels and Model-Predicted Subtype labels
+#--------------------------------------------------------------------
+
 library(survminer)
 library(survival)
 library(tidyverse)
 
+#--------------------------------------------------------------------
 # load files
+#--------------------------------------------------------------------
+
 counts_res = read.csv("C:/Users/User/Documents/master_thesis_project_analysis/pam50_classification_counts/counts_model_evaluation/counts_prediction_results/scanb_nextseq_test_counts_rf_predictions.csv",
                   header = 1, row.names = 1)
 rank_res = read.csv("C:/Users/User/Documents/master_thesis_project_analysis/pam50_classification_ranks/ranks_model_evaluation/ranks_prediction_results/scanb_nextseq_test_ranks_svm_predictions.csv",
@@ -10,8 +18,14 @@ rank_res = read.csv("C:/Users/User/Documents/master_thesis_project_analysis/pam5
 word2vec_res = read.csv("C:/Users/User/Documents/master_thesis_project_analysis/pam50_classification_word2vec/word2vec_model_evaluation/word2vec_prediction_results/scanb_nextseq_test_word2vec_svm_predictions.csv",
                   header = 1, row.names = 1)
 
-
+#--------------------------------------------------------------------
 # function to create a survival plot
+#--------------------------------------------------------------------
+#--------------------------------------------------------------------
+# function to create a plot using actual subtype labels
+#--------------------------------------------------------------------
+#--------------------------------------------------------------------
+
 actual_survivalPlot = function(df, survival_event, 
                         alive_indicator, plot_title)
 {
@@ -68,6 +82,12 @@ actual_survivalPlot = function(df, survival_event,
   return(plot)
                     
 }
+
+#--------------------------------------------------------------------
+#--------------------------------------------------------------------
+# function to create a plot using model-predicted subtype labels
+#--------------------------------------------------------------------
+#--------------------------------------------------------------------
 
 predicted_survivalPlot = function(df, survival_duration, survival_event, 
                                alive_indicator, design, plot_title)
@@ -128,7 +148,10 @@ predicted_survivalPlot = function(df, survival_duration, survival_event,
 }
 
 
+#--------------------------------------------------------------------
 # survival plot using actual subtype labels
+#--------------------------------------------------------------------
+
 actual_label_plot = actual_survivalPlot(df = counts_res, 
                                  survival_event = "overall_survival_event", 
                                  alive_indicator = 0, 
@@ -140,7 +163,10 @@ ggsave(actual_label_plot$plot, filename = "scanb_nextseq_test_actual_labels_surv
 
 
 
-# survival plot using counts-logreg labels
+#--------------------------------------------------------------------
+# survival plot using counts-rf labels
+#--------------------------------------------------------------------
+
 counts_rf_plot = predicted_survivalPlot(df = counts_res, 
                                         survival_event = "overall_survival_event", 
                                         alive_indicator = 0, 
@@ -150,19 +176,23 @@ print(counts_rf_plot)
 ggsave(counts_rf_plot$plot, filename = "scanb_nextseq_test_counts_rf_labels_survival.png", 
        dpi = 300, height = 7, width = 8)
 
-
+#--------------------------------------------------------------------
 # survival plot using rank-svm labels
+#--------------------------------------------------------------------
 rank_svm_plot = predicted_survivalPlot(df = rank_res, 
                                             survival_event = "overall_survival_event", 
                                             alive_indicator = 0, 
                                             plot_title = "SCAN-B NextSeq Test Set \n with Rank-SVM Predicted Labels (n=276)")
+
 print(rank_svm_plot)
 
 ggsave(rank_svm_plot$plot, filename = "scanb_nextseq_test_rank_svm_labels_survival.png", 
        dpi = 300, height = 7, width = 8)
 
 
+#--------------------------------------------------------------------
 # survival plot using word2vecpca-svm labels
+#--------------------------------------------------------------------
 word2vec_svm_plot = predicted_survivalPlot(df = word2vec_res, 
                                        survival_event = "overall_survival_event", 
                                        alive_indicator = 0, 
