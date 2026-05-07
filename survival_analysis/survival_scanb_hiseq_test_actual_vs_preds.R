@@ -1,3 +1,8 @@
+#--------------------------------------------------------------------
+# Title: Survival Analysis of SCAN-B HiSeq Test Set (20% Held-Out Test Set)
+# Comparison between Actual Subtype Labels and Model-Predicted Subtype labels
+#--------------------------------------------------------------------
+
 library(survminer)
 library(survival)
 library(tidyverse)
@@ -17,7 +22,7 @@ word2vec_res = read.csv("C:/Users/User/Documents/master_thesis_project_analysis/
 # function to create a survival plot
 #--------------------------------------------------------------------
 #--------------------------------------------------------------------
-# function for creating survival plots based on actual PAM50 labels
+# function for creating survival plots based on actual subtype labels
 #--------------------------------------------------------------------
 #--------------------------------------------------------------------
 actual_survivalPlot = function(df, survival_event, 
@@ -79,7 +84,7 @@ actual_survivalPlot = function(df, survival_event,
 
 #--------------------------------------------------------------------
 #--------------------------------------------------------------------
-# function for creating survival plots based on model-predicted PAM50 labels
+# function for creating survival plots based on model-predicted subtype labels
 #--------------------------------------------------------------------
 #--------------------------------------------------------------------
 
