@@ -1,13 +1,20 @@
-# import libraries
+#---------------------------------------------------------------------------------------------------------------
+# Title: GO enrichment analysis of gene clusters derived from PAM50 gene embeddings
+#---------------------------------------------------------------------------------------------------------------
+
 library(clusterProfiler)
 library(org.Hs.eg.db)
 library(enrichplot)
 library(ggplot2)
 
-# gene clusters
+#---------------------------------------------------------------------------------------------------------------
+# import gene clusters
+#---------------------------------------------------------------------------------------------------------------
 gene_cluster_file = read.csv('hierarchical_clusters_pam50_word2vec_embedding.csv')
 
+#---------------------------------------------------------------------------------------------------------------
 # get clusters
+#---------------------------------------------------------------------------------------------------------------
 cluster_1 = gene_cluster_file[gene_cluster_file$hier_cluster==1,'new_gene_symbol']
 cluster_2 = gene_cluster_file[gene_cluster_file$hier_cluster==2,'new_gene_symbol']
 cluster_3 = gene_cluster_file[gene_cluster_file$hier_cluster==3,'new_gene_symbol']
@@ -15,8 +22,8 @@ cluster_4 = gene_cluster_file[gene_cluster_file$hier_cluster==4,'new_gene_symbol
 cluster_5 = gene_cluster_file[gene_cluster_file$hier_cluster==5,'new_gene_symbol']
 cluster_6 = gene_cluster_file[gene_cluster_file$hier_cluster==6,'new_gene_symbol']
 
-## GO Biological Process Enrichment Analysis
-
+#---------------------------------------------------------------------------------------------------------------
+# GO Biological Process Enrichment Analysis
 #------------------------------------------------------------------------------
 
 # cluster 1
