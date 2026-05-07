@@ -1,13 +1,25 @@
+#--------------------------------------------------------------------
+# Title: Survival Analysis of SCAN-B HiSeq Training Set using Actual PAM50 Labels
+#--------------------------------------------------------------------
+
 library(survminer)
 library(survival)
 library(tidyverse)
 
+#--------------------------------------------------------------------
 # load files
+#--------------------------------------------------------------------
 scanb_train = read.csv("C:/Users/User/Documents/master_thesis_project_analysis/datasets/SCANB_GSE202203/scanb_hiseq_train_test_sets/train_test_80_20/scanb_hiseq_train80_survival_subtype.csv",
                   header = 1, row.names = 1)
 
-
+#--------------------------------------------------------------------
 # function to create a survival plot
+#--------------------------------------------------------------------
+#--------------------------------------------------------------------
+# function to create a survival plot using actual PAM50 labels
+#--------------------------------------------------------------------
+#--------------------------------------------------------------------
+
 actual_survivalPlot = function(df, survival_event, 
                         alive_indicator, plot_title)
 {
@@ -65,7 +77,9 @@ actual_survivalPlot = function(df, survival_event,
                     
 }
 
+#--------------------------------------------------------------------
 # survival plot using actual subtype labels
+#--------------------------------------------------------------------
 actual_label_plot = actual_survivalPlot(df = scanb_train, 
                                  survival_event = "overall_survival_event", 
                                  alive_indicator = 0, 
