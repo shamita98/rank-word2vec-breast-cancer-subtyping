@@ -9,10 +9,10 @@ Breast cancer subtype classification relies on RNA-seq expression profiles to ai
 
 ## Methods
 The manuscript proposes a machine learning approach that uses relative gene expression order representations to capture biological variation while minimizing cross-sample dependence for improving the robustness of subtype classification across various technical settings. Two types of representations are derived based on relative gene expression order within each sample:
- - Rank-normalized representation: replaces gene expression values with their within-sample ranks
+ - Rank-normalization: replaces gene expression values with their within-sample ranks
  - Word2vec embeddings: converts sorted gene identifiers into textual sequences, then encodes them into dense vectors using the word2vec model.
 
-Both representations are used to train machine learning models and compared with models trained on cross-sample normalized raw counts which were normalized as follows: PyDESeq2's median of ratios normalization --> Log2 transformation --> Z-score standardization.
+Both representations are used to train machine learning models, which are then compared with models trained on cross-sample normalized raw count. The raw counts were normalized as follows: PyDESeq2's median of ratios normalization --> Log2 transformation --> Z-score standardization.
 
 ### Datasets
 Two publicly available bulk RNA-seq datasets are used:
@@ -21,7 +21,7 @@ Two publicly available bulk RNA-seq datasets are used:
 
 SCAN-B was divided into SCAN-B HiSeq (80% training and 20% test sets) and SCAN-B NextSeq as a semi-external validation set. TCGA-BRCA was used as a fully external validation set.
 
-The raw datasets are not provided in this repo. The [`datasets`](https://github.com/shamita98/gene-exp-ml-breast-cancer-subtyping/tree/main/datasets) folder contain the code files for:
+The raw datasets are not provided in this repo. The [`datasets`](https://github.com/shamita98/gene-exp-ml-breast-cancer-subtyping/tree/main/datasets) folder contains the code for:
 - retrieval of TGCA-BRCA gene expression dataset
 - cleaning and organization of both SCAN-B and TCGA-BRCA datasets
 - train/test split of SCAN-B HiSeq dataset
@@ -29,10 +29,10 @@ The raw datasets are not provided in this repo. The [`datasets`](https://github.
 - PAM50 gene list with gene symbols and ENSEMBL gene ids
 
 ### Exploratory Data Analysis
-The [`exploratory_data_analysis`](https://github.com/shamita98/gene-exp-ml-breast-cancer-subtyping/tree/main/exploratory_data_analysis) folder demonstrates visualization and statistical tests conducted to assess gene expression distribution shifts across datasets.
+The [`exploratory_data_analysis`](https://github.com/shamita98/gene-exp-ml-breast-cancer-subtyping/tree/main/exploratory_data_analysis) folder contains the code for visualizations and statistical tests conducted to assess gene expression distribution shifts across datasets.
 
 ### Model Development and Evaluation
-The [`counts_classification`](https://github.com/shamita98/gene-exp-ml-breast-cancer-subtyping/tree/main/counts_classification), [`ranks_classification`](https://github.com/shamita98/gene-exp-ml-breast-cancer-subtyping/tree/main/ranks_classification) and [`word2vec_classification`](https://github.com/shamita98/gene-exp-ml-breast-cancer-subtyping/tree/main/word2vec_classification) folders contain the source code files for the development, cross-validation and test set evaluation of counts-, rank- and word2vec embedding-based machine learning models.
+The [`counts_classification`](https://github.com/shamita98/gene-exp-ml-breast-cancer-subtyping/tree/main/counts_classification), [`ranks_classification`](https://github.com/shamita98/gene-exp-ml-breast-cancer-subtyping/tree/main/ranks_classification) and [`word2vec_classification`](https://github.com/shamita98/gene-exp-ml-breast-cancer-subtyping/tree/main/word2vec_classification) folders contain the source code for the development, cross-validation and test set evaluation of counts-, rank- and word2vec embedding-based machine learning models.
 
 ### Downstream analyses
 The best machine learning models from each classification category underwent further downstream analyses which are demonstrated in the following folders:
