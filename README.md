@@ -17,8 +17,9 @@ Both representations are used to train machine learning models and compared with
 ### Datasets
 Two publicly available bulk RNA-seq datasets are used:
 - SCAN-B (downloaded from the NCBI Gene Expression Omnibus (GEO) website under accession ID GSE202203)
-  - SCAN-B was further divided into SCAN-B HiSeq (80% training and 20% test sets) and SCAN-B NextSeq as semi-external validation set
 - TCGA-BRCA (downloaded from GDC Data Portal using TCGA biolinks R package)
+
+SCAN-B was divided into SCAN-B HiSeq (80% training and 20% test sets) and SCAN-B NextSeq as a semi-external validation set. TCGA-BRCA was used as a fully external validation set.
 
 The raw datasets are not provided in this repo. The [`datasets`](https://github.com/shamita98/gene-exp-ml-breast-cancer-subtyping/tree/main/datasets) folder contain the code files for:
 - retrieval of TGCA-BRCA gene expression dataset
